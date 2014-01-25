@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Philadelphia Census in D3</title>
+		
+		<link rel='stylesheet' href='css/style.css' />
+
+		<script src='js/lib/jquery-1.9.1.min.js'></script>
+		<script src='js/lib/jquery-ui.min.js'></script>
+		<script src='js/lib/d3.v3.min.js'></script>
+		<script src='js/lib/d3.geo.projection.v0.min.js'></script>
+		<script src='js/lib/topojson.v1.min.js'></script>
+		<script src="js/lib/underscore.js"></script>
+		<script src="js/lib/backbone.js"></script>
+		<script src="js/lib/backbone.localStorage.js"></script>
+
+		<script src='js/scripts/initMap.js'></script>
+		<script src='js/scripts/CMFunctions.js'></script>
+		<script src='js/scripts/completeMap.js'></script>
+		<script src='js/scripts/variables.js'></script>
+		<script src='js/scripts/demographicsSetup.js'></script>
+		<script src='js/scripts/drawLegend.js'></script>
+		<script src='js/scripts/centerZoomView.js'></script>
+		<script src='js/scripts/readIn.js'></script>
+
+	</head>
+	<body>
+
+		<form id='insertForm' method='post'>
+			<input type='text' id='ResInput' name='ResInput' placeholder='Search by Tract Number'></input>
+			<select id='demoInput' name = 'demoInput'>
+				<option value='noselection'>Select a Demographic</option>
+				<option value='totalpop'>Population</option>
+				<option value='popdense'>Population Density</option>
+				<option value='orwhite'>White Population %</option>
+				<option value='orblack'>Black Population %</option>
+				<option value='latino'>Latino Population %</option>
+				<option value='orasian'>Asian Population %</option>
+				<option value='orother'>Other Population %</option>
+				<option value='twoormorerace'>Multiple Races %</option>
+				<option value='totalhouse'>Homes</option>
+				<option value='housedense'>Home Density</option>
+				<option value='vacant'>Vacant Homes %</option>
+			</select>
+			<button id='submit'>Submit</button>
+		</form>
+		<br/>
+		<svg id='thesvg'></svg>
+
+		<script type="text/javascript">
+			var w = 900, h = 400;
+			var svg = d3.select('svg');
+			svg.attr('width', w)
+				.attr('height', h);
+
+			var appView = Backbone.View.extend({
+				el:$('#insertForm'),
+				events: {
+					'change #demoInput': 'demoChanged',
+					'click #submit': 'submitClicked'
+				},
+				demoChanged: function(){
+					getDemographic();
+				},
+				
+				submitClicked: function(e){
+					e.preventDefault();
+					formData = $('#insertForm').serializeArray();
+					viewRes.segNumber = formData[0].value;
+					if (viewRes.segNumber != 00) {
+						viewRes.mode='zoomIn';
+						initMap();
+					}
+					/*else {
+						viewRes.mode='LR';
+					}*/
+					//initMap();
+				}
+				
+			});
+			
+			function getDemographic() {
+				formData = $('#insertForm').serializeArray();
+				currentDemo.code = formData[1].value;
+				completeMap();
+			};
+			
+			function precise_round(num,decimals){
+				if (num == undefined){
+					return '';
+				} else {
+					return (Math.round((num*Math.pow(10,decimals))+(10/Math.pow(100,decimals)))/Math.pow(10,decimals)).toFixed(decimals);
+				}
+			}
+ 
+			function commaSeparateNumber(val){
+				while (/(\d+)(\d{3})/.test(val.toString())){
+					val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+				}
+				return val;
+			}
+
+
+			$(document).ready(readIn);
+			new appView();
+
+		</script>
+
+	</body>
+</html>
