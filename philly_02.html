@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Philadelphia d3</title> 
+<style>
+ 
+path {
+fill: #aaa;
+stroke: #fff;
+stroke-width: .25px;
+pointer-events: all;
+}
+ 
+text {
+font-family: sans-serif;
+font-size: 75px;
+color: #aaa;
+}
+ 
+</style>
+<body>
+ 
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+ 
+<script>
+
+var topologies = {};
+var jsonobj = {};
+
+var HR = {};
+HR.HRNumber = '034400'
+ 
+var width = 960,
+height = 500;
+ 
+var projection = d3.geo.mercator()
+.center([-75.12, 40])
+.scale(80000);
+ 
+var path = d3.geo.path()
+.projection(projection);
+ 
+var svg = d3.select("body").append("svg")
+.attr("width", width)
+.attr("height", height);
+ 
+var text = svg.append("text")
+.attr("y", height/8)
+.attr("text-anchor", "left");
+
+ 
+d3.json("topojson/phila_block_rh_topo.json", function(blockTopology) {
+	topologies.blockTopology = blockTopology;
+	jsonobj.blockData = topojson.feature(blockTopology, blockTopology.objects.phila_block_rh_geo);
+
+/*	for (i=0; i<jsonobj.blockData.features.length; i++){
+		if (jsonobj.blockData.features[i].properties.tractce != HR.HRNumber){
+			jsonobj.blockData.features.splice(i,1);
+			i--;
+		} 
+	}
+*/
+
+	svg.selectAll("path")
+	//	.data(topojson.feature(topology, topology.objects.phila_block_race_geo).features)
+		.data(jsonobj.blockData.features)
+		.enter()
+		.append("path")
+		.attr("class", "tracts")
+		.attr("id", function(d){return d.properties.blockce10;})
+		.attr("d", path)
+		.on("mouseover", function() {
+			d3.select(this).style("fill", "#ff0");
+			text.text("block: " + this.id);
+		})
+		.on("mouseout", function() {
+			d3.select(this).style("fill", "#aaa");
+			text.text("");
+		});
+
+});
+
+</script>
