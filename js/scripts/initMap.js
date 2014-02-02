@@ -4,7 +4,8 @@ function initMap(){
 	if(viewRes.mode == 'LR'){
 		projection = d3.geo.mercator()
 			.center([-75.12, 40])
-			.translate([w/2+150, h/2])
+			.translate([w/2, h/2])
+//			.translate([w/2+150, h/2])
 			.scale(60000);
 		path = d3.geo.path()
 			.projection(projection);
@@ -16,7 +17,8 @@ function initMap(){
 		projection = d3.geo.mercator()
 			.center([Coords.centerLon, Coords.centerLat])
 			.scale(Coords.theReScale-(Coords.theReScale*.2))
-			.translate([w/2+150, h/2]);
+			.translate([w/2, h/2]);
+//			.translate([w/2+150, h/2]);
 		path = d3.geo.path()
 			.projection(projection);
 		// step through the HR data and remove the objects that are not in the LR area
@@ -35,7 +37,8 @@ function initMap(){
 	else if(viewRes.mode == 'HR'){
 		projection = d3.geo.mercator()
 			.center([-75.12, 40])
-			.translate([w/2+150, h/2])
+			.translate([w/2, h/2])
+//			.translate([w/2+150, h/2])
 			.scale(60000);
 		path = d3.geo.path()
 			.projection(projection);

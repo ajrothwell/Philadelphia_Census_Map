@@ -46,14 +46,25 @@
 			<button id='submit'>Submit</button>
 		</form>
 		<br/>
-		<svg id='thesvg'></svg>
+		<div id='infoDiv'>
+			<div class='universe_name_label'>Philadelphia</div>
+			<div class='LR_name_label'></div>
+			<div class='HR_name_label'></div>
+			<div class='demoNameText'></div>
+			<div class='demoValueText'></div>
+		</div>
+		<svg id='infoSVG'></svg>
+		<svg id='mapSVG'></svg>
 
 		<script type="text/javascript">
-			var w = 900, h = 400;
-			var svg = d3.select('svg');
-			svg.attr('width', w)
+			var w = 600, h = 400;
+			var svg = d3.select('#mapSVG');
+/*			svg.attr('width', w)
 				.attr('height', h);
+*/
 
+			var isvg = d3.select('#infoSVG')
+			
 			var appView = Backbone.View.extend({
 				el:$('#insertForm'),
 				events: {

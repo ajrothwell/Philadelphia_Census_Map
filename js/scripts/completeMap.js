@@ -9,6 +9,7 @@ function completeMap() {
 	// if in "LR" mode, add the "switchToHR" button
 	if(viewRes.mode == 'LR'){
 		addSwitchToHRButton();
+		$('.LR_name_label').html('');
 	}
 	// else if in "HR" mode add the "switchtoLR" button
 	else if(viewRes.mode == 'HR'){

@@ -5,15 +5,18 @@ function drawLegend() {
 	var barHeight = 8;
 	var barSeparation = 8;
 	var verticalBarDistance = barHeight + barSeparation;
-	var barX = textPos.x;			
-	var firstBarY = 245;
+	var barX = absPos.textBoxX;			
+	var firstBarY = 60;
+//	var firstBarY = 245;
 
 	var textXOffset = 35
 	var textYOffset = verticalBarDistance / 2;
 	var textXPosition = barX + textXOffset;
 
-			
-	svg.append('g')
+	// clear any legend already there		
+	isvg.selectAll('g').remove();
+	
+	isvg.append('g')
 		.attr('id', 'theLegend')
 		.append('text')
 		.attr('id', 'legendTitle')
@@ -22,7 +25,7 @@ function drawLegend() {
 		.attr("y", firstBarY - 15);
 		
 		
-	svg.select('#theLegend')
+	isvg.select('#theLegend')
 		.selectAll('rect')
 		.data(currentDemo.copiedQuantiles)
 		.enter()
@@ -45,7 +48,7 @@ function drawLegend() {
 		.attr('stroke', 'rgb(0,0,0)');
 				
 
-	svg.select('#theLegend')
+	isvg.select('#theLegend')
 		.append('g')
 		.attr('class', 'legendLabels')
 		.selectAll('text')

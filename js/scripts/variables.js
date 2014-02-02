@@ -13,13 +13,13 @@ var topologies = {};
 
 var quantile = d3.scale.quantile();
 
-var textPos = {};
-textPos.MapNameHeight=50;
-textPos.LRNameHeight=90;
-textPos.HRNameHeight=120;
-textPos.demoNameHeight=155;
-textPos.demoValueHeight=185;
-textPos.x=70;
+var absPos = {};
+//textPos.MapNameHeight=50;
+//textPos.LRNameHeight=90;
+//textPos.HRNameHeight=120;
+//textPos.demoNameHeight=155;
+//textPos.demoValueHeight=185;
+absPos.textBoxX=30;
 
 var formData;
 

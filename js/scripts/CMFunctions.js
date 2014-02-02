@@ -1,23 +1,11 @@
 
+// TB stands for "textBox"
 addTB = function(){
 	// this puts in the universe name and demographic in advance
-	svg.append('g')
-		.attr('id', 'theTextG')
-		.append('text')
-		.attr('id', 'universeName')
-		.attr('class', 'universe_name_label')
-		.attr('y', textPos.MapNameHeight)
-		.attr('x', textPos.x)
-		.attr("text-anchor", "left")
-		.text('Philadelphia');
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'demoNameText')
-		.attr('class', 'demoNameText')
-		.text(currentDemo.theName)
-		.attr('y', textPos.demoNameHeight)
-		.attr('x', textPos.x)
-		.attr("text-anchor", "left");
+//	svg.append('g')
+//		.attr('id', 'theTextG');
+	
+	$('.demoNameText').html(currentDemo.theName);
 };
 
 addSwitchToHRButton = function(){
@@ -26,7 +14,7 @@ addSwitchToHRButton = function(){
 		.attr('class', 'switchButton')
 		.on('click', switchToHRMode)
 		.append('rect')
-		.attr("x", 630)
+		.attr("x", 330)
 		.attr("y", 360)
 		.attr("width", 175)
 		.attr("height", 25)
@@ -36,7 +24,7 @@ addSwitchToHRButton = function(){
 	svg.select('#switchToHRButton')
 		.append('text')
 		.attr('class', 'switchButtonText')
-		.attr("x", 648)
+		.attr("x", 348)
 		.attr("y", 377)
 		.text('Click to Show Blocks');
 };
@@ -46,7 +34,7 @@ switchToHRMode = function(){
 		.attr('id', 'pleaseWaitBox')
 		.attr('class', 'pleaseWaitBox')
 		.append('rect')
-		.attr('x', 520)
+		.attr('x', 220)
 		.attr('y', 150)
 		.attr("width", 150)
 		.attr("height", 50)
@@ -56,7 +44,7 @@ switchToHRMode = function(){
 	svg.select('#pleaseWaitBox')
 		.append('text')
 		.attr('class', 'pleaseWaitButtonText')
-		.attr("x", 525)
+		.attr("x", 225)
 		.attr("y", 183)
 		.text('Please Wait');
 	viewRes.mode = 'HR';
@@ -72,7 +60,7 @@ addSwitchToLRButton = function(){
 			initMap();
 		})
 		.append('rect')
-		.attr("x", 630)
+		.attr("x", 330)
 		.attr("y", 360)
 		.attr("width", 175)
 		.attr("height", 25)
@@ -82,7 +70,7 @@ addSwitchToLRButton = function(){
 	svg.select('#switchToLRButton')
 		.append('text')
 		.attr('class', 'switchButtonText')
-		.attr("x", 650)
+		.attr("x", 350)
 		.attr("y", 377)
 		.text('Click to Show Tracts');
 };
@@ -158,47 +146,19 @@ addMap = function(){
 };
 
 addTBLRpermLabel = function(){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'LRName')
-		.attr('class', 'LR_name_label')
-		.attr('y', textPos.LRNameHeight)
-		.attr('x', textPos.x)
-		.attr('text-anchor', 'left')
-		.text('Tract '+ viewRes.segNumber);
+	$('.LR_name_label').html('Tract '+ viewRes.segNumber);
 };
 
 addTBLRhoverLabel = function(a){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'LRsubShapeName')
-		.attr('class', 'LR_name_label')
-		.attr('y', textPos.LRNameHeight)
-		.attr('x', textPos.x)
-		.attr('text-anchor', 'left')
-		.text('Tract ' + d3.select(a).attr('LR'));
+	$('.LR_name_label').html('Tract ' + d3.select(a).attr('LR'));
 };
 
 addTBHRhoverLabel = function(a){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'HRsubShapeName')
-		.attr('class', 'HR_name_label')
-		.attr('y', textPos.HRNameHeight)
-		.attr('x', textPos.x)
-		.attr('text-anchor', 'left')
-		.text('Block ' + d3.select(a).attr('HR'));
+	$('.HR_name_label').html('Block ' + d3.select(a).attr('HR'));
 };
 
 addTBDemoValue = function(a){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'demoValueText')
-		.attr('class', 'demoValueText')
-		.text(d3.select(a).attr('value'))
-		.attr('y', textPos.demoValueHeight)
-		.attr('x', textPos.x)
-		.attr("text-anchor", "left");
+	$('.demoValueText').html(d3.select(a).attr('value'));
 };
 
 mouseOver = function(){
@@ -220,9 +180,11 @@ mouseOver = function(){
 };
 	
 mouseOut = function(){
-	svg.select('#LRsubShapeName').remove();
-	svg.select('#HRsubShapeName').remove();
-	svg.select('#demoValueText').remove();
+	$('.HR_name_label').html('');
+	$('.demoValueText').html('');
+	if (viewRes.mode != 'zoomIn'){
+		$('.LR_name_label').html('');
+	}
 };
 
 dblClick = function(){
