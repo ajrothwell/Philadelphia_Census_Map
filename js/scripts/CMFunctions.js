@@ -14,8 +14,8 @@ addSwitchToHRButton = function(){
 		.attr('class', 'switchButton')
 		.on('click', switchToHRMode)
 		.append('rect')
-		.attr("x", 330)
-		.attr("y", 360)
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
 		.attr("width", 175)
 		.attr("height", 25)
 		.attr('stroke-width', 1)
@@ -24,8 +24,8 @@ addSwitchToHRButton = function(){
 	svg.select('#switchToHRButton')
 		.append('text')
 		.attr('class', 'switchButtonText')
-		.attr("x", 348)
-		.attr("y", 377)
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
 		.text('Click to Show Blocks');
 };
 
@@ -34,8 +34,8 @@ switchToHRMode = function(){
 		.attr('id', 'pleaseWaitBox')
 		.attr('class', 'pleaseWaitBox')
 		.append('rect')
-		.attr('x', 220)
-		.attr('y', 150)
+		.attr('x', absPos.waitButtonX)
+		.attr('y', absPos.waitButtonY)
 		.attr("width", 150)
 		.attr("height", 50)
 		.attr('stroke-width', 2)
@@ -44,8 +44,8 @@ switchToHRMode = function(){
 	svg.select('#pleaseWaitBox')
 		.append('text')
 		.attr('class', 'pleaseWaitButtonText')
-		.attr("x", 225)
-		.attr("y", 183)
+		.attr("x", absPos.waitButtonTextX)
+		.attr("y", absPos.waitButtonTextY)
 		.text('Please Wait');
 	viewRes.mode = 'HR';
 	setTimeout(initMap, 100);
@@ -60,8 +60,8 @@ addSwitchToLRButton = function(){
 			initMap();
 		})
 		.append('rect')
-		.attr("x", 330)
-		.attr("y", 360)
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
 		.attr("width", 175)
 		.attr("height", 25)
 		.attr('stroke-width', 1)
@@ -70,8 +70,8 @@ addSwitchToLRButton = function(){
 	svg.select('#switchToLRButton')
 		.append('text')
 		.attr('class', 'switchButtonText')
-		.attr("x", 350)
-		.attr("y", 377)
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
 		.text('Click to Show Tracts');
 };
 
@@ -84,8 +84,8 @@ addBackToLRButton = function(){
 		})
 		.append('rect')
 		.attr('id', 'backToLRRect')
-		.attr("x", 5)
-		.attr("y", 5)
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
 		.attr("width", 50)
 		.attr("height", 25)
 		.attr('stroke-width', 1)
@@ -94,8 +94,8 @@ addBackToLRButton = function(){
 	svg.select('#backToLRButton')
 		.append('text')
 		.attr('id', 'backToLRButtonText')
-		.attr("x", 9)
-		.attr("y", 23)
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
 		.text('Back');
 };
 

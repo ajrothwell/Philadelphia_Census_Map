@@ -39,43 +39,6 @@ function centerZoomView() {
 	Coords.theScale = h/2/pi;
 	Coords.theReScale = Coords.theScale/Coords.featurePercent*0.8;
 
-/*
-	}
-	
-	else {
-		if (stateWidth > stateHeight*1.25) {
-//			alert('width greater than 1.25 * height - make it huge')
-			statePercent = stateWidth/360
-			theScale = w2/2/pi
-			if (stateNumber == 27 || stateNumber == 02 || stateNumber == 55) {
-//				alert('rescale for Minnesota, Alaska, Wisconsin')
-				theReScale = theScale/statePercent*0.6
-			} else if (stateNumber == 05 || stateNumber == 22 || stateNumber == 29 || stateNumber == 54) {
-//				alert('rescale for Arkansas, Louisiana, Missouri, W Virginia')
-				theReScale = theScale/statePercent*0.7
-			} else {
-				theReScale = theScale/statePercent*0.82
-			}
-		
-		} else if (stateWidth > stateHeight*1.1) {
-//			alert('width greater than 1.1 * height - a little smaller')
-			statePercent = stateWidth/360
-			theScale = w2/2/pi
-			if (stateNumber == 26 || stateNumber == 39 || stateNumber == 12) {
-//				alert('rescale for Michigan, Ohio, Florida')
-				theReScale = theScale/statePercent*0.6
-			} else {
-				theReScale = theScale/statePercent*0.72
-			}
-		} else {
-//			alert('width barely greater than height - keep it in the middle')
-			statePercent = stateWidth/360
-			theScale = h/2/pi
-			theReScale = theScale/statePercent
-		}
-	}			
-*/
-
 	Coords.centerLon = d3.max(Coords.lons) - (Coords.featureWidth/2);
 	Coords.centerLat = d3.max(Coords.lats) - (Coords.featureHeight/2);
 	Coords.theCenter = [Coords.centerLon, Coords.centerLat];

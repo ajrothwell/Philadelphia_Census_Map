@@ -14,12 +14,26 @@ var topologies = {};
 var quantile = d3.scale.quantile();
 
 var absPos = {};
-//textPos.MapNameHeight=50;
-//textPos.LRNameHeight=90;
-//textPos.HRNameHeight=120;
-//textPos.demoNameHeight=155;
-//textPos.demoValueHeight=185;
-absPos.textBoxX=30;
+absPos.textBoxX = 30;
+
+/*
+absPos.addedButtonX = 0;
+absPos.addedButtonY = 1;
+absPos.addedButtonTextX= 4;
+absPos.addedButtonTextY = 18;
+*/
+
+absPos.addedButtonX = 450;
+absPos.addedButtonY = 10;
+absPos.addedButtonTextX= 454;
+absPos.addedButtonTextY = 28;
+
+absPos.waitButtonX = 450;
+absPos.waitButtonY = 300;
+absPos.waitButtonTextX = 455;
+absPos.waitButtonTextY = 318;
+
+
 
 var formData;
 
