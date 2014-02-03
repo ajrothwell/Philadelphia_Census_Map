@@ -15,6 +15,7 @@
 		<script src="js/lib/backbone.js"></script>
 		<script src="js/lib/backbone.localStorage.js"></script>
 
+		<script src='js/scripts/centerWholeMapView.js'></script>
 		<script src='js/scripts/initMap.js'></script>
 		<script src='js/scripts/CMFunctions.js'></script>
 		<script src='js/scripts/completeMap.js'></script>
@@ -26,9 +27,9 @@
 
 	</head>
 	<body>
-
 		<form id='insertForm' method='post'>
-			<input type='text' id='ResInput' name='ResInput' placeholder='Search by Tract Number'></input>
+			<input type='text' id='ResInput' name='ResInput' placeholder='Tract #'></input>
+			<button id='submit'>Submit</button>
 			<select id='demoInput' name = 'demoInput'>
 				<option value='noselection'>Select a Demographic</option>
 				<option value='totalpop'>Population</option>
@@ -43,17 +44,27 @@
 				<option value='housedense'>Home Density</option>
 				<option value='vacant'>Vacant Homes %</option>
 			</select>
-			<button id='submit'>Submit</button>
 		</form>
-		<br/>
-		<svg id='thesvg'></svg>
+		
+		<div id='infoDiv'>
+			<div class='universe_name_label'>Philadelphia</div>
+			<div class='LR_name_label'></div>
+			<div class='HR_name_label'></div>
+			<div class='demoNameText'></div>
+			<div class='demoValueText'></div>
+		</div>
+		<svg id='infoSVG'></svg>
+		<svg id='mapSVG'></svg>
 
 		<script type="text/javascript">
-			var w = 900, h = 400;
-			var svg = d3.select('svg');
-			svg.attr('width', w)
-				.attr('height', h);
-
+			var h = $(window).height();
+			//var w = h;
+			var w = $(window).width();
+			var extension = 300;
+			var svg = d3.select('#mapSVG');
+			var isvg = d3.select('#infoSVG');
+/*			var bsvg = d3.select('#buttonSVG');*/
+			
 			var appView = Backbone.View.extend({
 				el:$('#insertForm'),
 				events: {

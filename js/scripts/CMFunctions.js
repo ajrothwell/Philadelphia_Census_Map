@@ -1,23 +1,7 @@
 
+// TB stands for "textBox"
 addTB = function(){
-	// this puts in the universe name and demographic in advance
-	svg.append('g')
-		.attr('id', 'theTextG')
-		.append('text')
-		.attr('id', 'universeName')
-		.attr('class', 'universe_name_label')
-		.attr('y', textPos.MapNameHeight)
-		.attr('x', textPos.x)
-		.attr("text-anchor", "left")
-		.text('Philadelphia');
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'demoNameText')
-		.attr('class', 'demoNameText')
-		.text(currentDemo.theName)
-		.attr('y', textPos.demoNameHeight)
-		.attr('x', textPos.x)
-		.attr("text-anchor", "left");
+	$('.demoNameText').html(currentDemo.theName);
 };
 
 addSwitchToHRButton = function(){
@@ -26,41 +10,19 @@ addSwitchToHRButton = function(){
 		.attr('class', 'switchButton')
 		.on('click', switchToHRMode)
 		.append('rect')
-		.attr("x", 630)
-		.attr("y", 360)
-		.attr("width", 175)
-		.attr("height", 25)
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
+		.attr("width", 142)
+		.attr("height", 18)
 		.attr('stroke-width', 1)
 		.attr('stroke', 'rgb(0,0,0)')
 		.attr('fill', 'rgb(220,220,220)');
 	svg.select('#switchToHRButton')
 		.append('text')
 		.attr('class', 'switchButtonText')
-		.attr("x", 648)
-		.attr("y", 377)
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
 		.text('Click to Show Blocks');
-};
-
-switchToHRMode = function(){
-	svg.append('g')
-		.attr('id', 'pleaseWaitBox')
-		.attr('class', 'pleaseWaitBox')
-		.append('rect')
-		.attr('x', 520)
-		.attr('y', 150)
-		.attr("width", 150)
-		.attr("height", 50)
-		.attr('stroke-width', 2)
-		.attr('stroke', 'rgb(0,0,0)')
-		.attr('fill', 'rgb(255,255,51)');
-	svg.select('#pleaseWaitBox')
-		.append('text')
-		.attr('class', 'pleaseWaitButtonText')
-		.attr("x", 525)
-		.attr("y", 183)
-		.text('Please Wait');
-	viewRes.mode = 'HR';
-	setTimeout(initMap, 100);
 };
 
 addSwitchToLRButton = function(){
@@ -72,44 +34,69 @@ addSwitchToLRButton = function(){
 			initMap();
 		})
 		.append('rect')
-		.attr("x", 630)
-		.attr("y", 360)
-		.attr("width", 175)
-		.attr("height", 25)
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
+		.attr("width", 142)
+		.attr("height", 18)
 		.attr('stroke-width', 1)
 		.attr('stroke', 'rgb(0,0,0)')
 		.attr('fill', 'rgb(220,220,220)');
 	svg.select('#switchToLRButton')
 		.append('text')
 		.attr('class', 'switchButtonText')
-		.attr("x", 650)
-		.attr("y", 377)
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
 		.text('Click to Show Tracts');
 };
 
 addBackToLRButton = function(){
 	svg.append('g')
 		.attr('id', 'backToLRButton')
+		.attr('class', 'switchButton')
 		.on('click', function(){
 			viewRes.mode='LR';
 				initMap();
 		})
 		.append('rect')
 		.attr('id', 'backToLRRect')
-		.attr("x", 5)
-		.attr("y", 5)
-		.attr("width", 50)
-		.attr("height", 25)
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
+		.attr("width", 43)
+		.attr("height", 18)
 		.attr('stroke-width', 1)
 		.attr('stroke', 'rgb(0,0,0)')
 		.attr('fill', 'rgb(220,220,220)');
 	svg.select('#backToLRButton')
 		.append('text')
 		.attr('id', 'backToLRButtonText')
-		.attr("x", 9)
-		.attr("y", 23)
+		.attr('class', 'switchButtonText')
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
 		.text('Back');
 };
+
+switchToHRMode = function(){
+	svg.append('g')
+		.attr('id', 'pleaseWaitBox')
+		.attr('class', 'pleaseWaitBox')
+		.append('rect')
+		.attr('x', absPos.waitButtonX)
+		.attr('y', absPos.waitButtonY)
+		.attr("width", 150)
+		.attr("height", 50)
+		.attr('stroke-width', 2)
+		.attr('stroke', 'rgb(0,0,0)')
+		.attr('fill', 'rgb(255,255,51)');
+	svg.select('#pleaseWaitBox')
+		.append('text')
+		.attr('class', 'pleaseWaitButtonText')
+		.attr("x", absPos.waitButtonTextX)
+		.attr("y", absPos.waitButtonTextY)
+		.text('Please Wait');
+	viewRes.mode = 'HR';
+	setTimeout(initMap, 100);
+};
+
 
 getTract = function(a){
 	return a.properties.tractce;
@@ -149,8 +136,6 @@ addMap = function(){
 		.attr('HR', function(d) { return d.properties.blockce; })
 		.attr('value', function(d) { return getValue(d); })
 //		.attr('value', function(d) {return precise_round(d.properties[currentDemo.code], currentDemo.theDecimals); })
-		.attr('stroke', '#fff')
-		.attr('stroke-width', 0.1)
 		.attr('d', path)
 		.on('mouseover', mouseOver)
 		.on('mouseout', mouseOut)
@@ -158,47 +143,19 @@ addMap = function(){
 };
 
 addTBLRpermLabel = function(){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'LRName')
-		.attr('class', 'LR_name_label')
-		.attr('y', textPos.LRNameHeight)
-		.attr('x', textPos.x)
-		.attr('text-anchor', 'left')
-		.text('Tract '+ viewRes.segNumber);
+	$('.LR_name_label').html('Tract '+ viewRes.segNumber);
 };
 
 addTBLRhoverLabel = function(a){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'LRsubShapeName')
-		.attr('class', 'LR_name_label')
-		.attr('y', textPos.LRNameHeight)
-		.attr('x', textPos.x)
-		.attr('text-anchor', 'left')
-		.text('Tract ' + d3.select(a).attr('LR'));
+	$('.LR_name_label').html('Tract ' + d3.select(a).attr('LR'));
 };
 
 addTBHRhoverLabel = function(a){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'HRsubShapeName')
-		.attr('class', 'HR_name_label')
-		.attr('y', textPos.HRNameHeight)
-		.attr('x', textPos.x)
-		.attr('text-anchor', 'left')
-		.text('Block ' + d3.select(a).attr('HR'));
+	$('.HR_name_label').html('Block ' + d3.select(a).attr('HR'));
 };
 
 addTBDemoValue = function(a){
-	svg.select('#theTextG')
-		.append('text')
-		.attr('id', 'demoValueText')
-		.attr('class', 'demoValueText')
-		.text(d3.select(a).attr('value'))
-		.attr('y', textPos.demoValueHeight)
-		.attr('x', textPos.x)
-		.attr("text-anchor", "left");
+	$('.demoValueText').html(d3.select(a).attr('value'));
 };
 
 mouseOver = function(){
@@ -220,9 +177,11 @@ mouseOver = function(){
 };
 	
 mouseOut = function(){
-	svg.select('#LRsubShapeName').remove();
-	svg.select('#HRsubShapeName').remove();
-	svg.select('#demoValueText').remove();
+	$('.HR_name_label').html('');
+	$('.demoValueText').html('');
+	if (viewRes.mode != 'zoomIn'){
+		$('.LR_name_label').html('');
+	}
 };
 
 dblClick = function(){
