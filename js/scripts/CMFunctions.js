@@ -1,10 +1,6 @@
 
 // TB stands for "textBox"
 addTB = function(){
-	// this puts in the universe name and demographic in advance
-//	svg.append('g')
-//		.attr('id', 'theTextG');
-	
 	$('.demoNameText').html(currentDemo.theName);
 };
 
@@ -16,8 +12,8 @@ addSwitchToHRButton = function(){
 		.append('rect')
 		.attr("x", absPos.addedButtonX)
 		.attr("y", absPos.addedButtonY)
-		.attr("width", 175)
-		.attr("height", 25)
+		.attr("width", 142)
+		.attr("height", 18)
 		.attr('stroke-width', 1)
 		.attr('stroke', 'rgb(0,0,0)')
 		.attr('fill', 'rgb(220,220,220)');
@@ -27,6 +23,56 @@ addSwitchToHRButton = function(){
 		.attr("x", absPos.addedButtonTextX)
 		.attr("y", absPos.addedButtonTextY)
 		.text('Click to Show Blocks');
+};
+
+addSwitchToLRButton = function(){
+	svg.append('g')
+		.attr('id', 'switchToLRButton')
+		.attr('class', 'switchButton')
+		.on('click', function(){
+			viewRes.mode='LR';
+			initMap();
+		})
+		.append('rect')
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
+		.attr("width", 142)
+		.attr("height", 18)
+		.attr('stroke-width', 1)
+		.attr('stroke', 'rgb(0,0,0)')
+		.attr('fill', 'rgb(220,220,220)');
+	svg.select('#switchToLRButton')
+		.append('text')
+		.attr('class', 'switchButtonText')
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
+		.text('Click to Show Tracts');
+};
+
+addBackToLRButton = function(){
+	svg.append('g')
+		.attr('id', 'backToLRButton')
+		.attr('class', 'switchButton')
+		.on('click', function(){
+			viewRes.mode='LR';
+				initMap();
+		})
+		.append('rect')
+		.attr('id', 'backToLRRect')
+		.attr("x", absPos.addedButtonX)
+		.attr("y", absPos.addedButtonY)
+		.attr("width", 43)
+		.attr("height", 18)
+		.attr('stroke-width', 1)
+		.attr('stroke', 'rgb(0,0,0)')
+		.attr('fill', 'rgb(220,220,220)');
+	svg.select('#backToLRButton')
+		.append('text')
+		.attr('id', 'backToLRButtonText')
+		.attr('class', 'switchButtonText')
+		.attr("x", absPos.addedButtonTextX)
+		.attr("y", absPos.addedButtonTextY)
+		.text('Back');
 };
 
 switchToHRMode = function(){
@@ -51,53 +97,6 @@ switchToHRMode = function(){
 	setTimeout(initMap, 100);
 };
 
-addSwitchToLRButton = function(){
-	svg.append('g')
-		.attr('id', 'switchToLRButton')
-		.attr('class', 'switchButton')
-		.on('click', function(){
-			viewRes.mode='LR';
-			initMap();
-		})
-		.append('rect')
-		.attr("x", absPos.addedButtonX)
-		.attr("y", absPos.addedButtonY)
-		.attr("width", 175)
-		.attr("height", 25)
-		.attr('stroke-width', 1)
-		.attr('stroke', 'rgb(0,0,0)')
-		.attr('fill', 'rgb(220,220,220)');
-	svg.select('#switchToLRButton')
-		.append('text')
-		.attr('class', 'switchButtonText')
-		.attr("x", absPos.addedButtonTextX)
-		.attr("y", absPos.addedButtonTextY)
-		.text('Click to Show Tracts');
-};
-
-addBackToLRButton = function(){
-	svg.append('g')
-		.attr('id', 'backToLRButton')
-		.on('click', function(){
-			viewRes.mode='LR';
-				initMap();
-		})
-		.append('rect')
-		.attr('id', 'backToLRRect')
-		.attr("x", absPos.addedButtonX)
-		.attr("y", absPos.addedButtonY)
-		.attr("width", 50)
-		.attr("height", 25)
-		.attr('stroke-width', 1)
-		.attr('stroke', 'rgb(0,0,0)')
-		.attr('fill', 'rgb(220,220,220)');
-	svg.select('#backToLRButton')
-		.append('text')
-		.attr('id', 'backToLRButtonText')
-		.attr("x", absPos.addedButtonTextX)
-		.attr("y", absPos.addedButtonTextY)
-		.text('Back');
-};
 
 getTract = function(a){
 	return a.properties.tractce;
@@ -137,8 +136,6 @@ addMap = function(){
 		.attr('HR', function(d) { return d.properties.blockce; })
 		.attr('value', function(d) { return getValue(d); })
 //		.attr('value', function(d) {return precise_round(d.properties[currentDemo.code], currentDemo.theDecimals); })
-		.attr('stroke', '#fff')
-		.attr('stroke-width', 0.1)
 		.attr('d', path)
 		.on('mouseover', mouseOver)
 		.on('mouseout', mouseOut)

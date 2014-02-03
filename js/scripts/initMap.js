@@ -7,8 +7,9 @@ function initMap(){
 //			.center([-75.12, 40])
 			.center([Coords.centerLon, Coords.centerLat])
 //			.scale(60000)
-			.scale(Coords.theReScale-(Coords.theReScale*.2))
-			.translate([w/2, h/2]);
+			.scale(Coords.fScale)
+//			.scale(Coords.theReScale-(Coords.theReScale*.2))
+			.translate([w/2-150, h/2]);
 		path = d3.geo.path()
 			.projection(projection);
 		currentFeatureName = jsonobj.tractData.features;
@@ -18,8 +19,9 @@ function initMap(){
 		centerZoomView();
 		projection = d3.geo.mercator()
 			.center([Coords.centerLon, Coords.centerLat])
-			.scale(Coords.theReScale-(Coords.theReScale*.2))
-			.translate([w/2, h/2]);
+			.scale(Coords.fScale)
+//			.scale(Coords.theReScale-(Coords.theReScale*.2))
+			.translate([w/2-150, h/2]);
 		path = d3.geo.path()
 			.projection(projection);
 		// step through the HR data and remove the objects that are not in the LR area
@@ -38,8 +40,9 @@ function initMap(){
 //			.center([-75.12, 40])
 			.center([Coords.centerLon, Coords.centerLat])
 //			.scale(60000)
-			.scale(Coords.theReScale-(Coords.theReScale*.2))
-			.translate([w/2, h/2]);
+			.scale(Coords.fScale)
+//			.scale(Coords.theReScale-(Coords.theReScale*.2))
+			.translate([w/2-150, h/2]);
 		path = d3.geo.path()
 			.projection(projection);
 		jsonobj.blockData = topojson.feature(topologies.blockTopology, topologies.blockTopology.objects.phila_block_rh_geo);

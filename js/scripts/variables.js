@@ -16,22 +16,15 @@ var quantile = d3.scale.quantile();
 var absPos = {};
 absPos.textBoxX = 30;
 
-/*
-absPos.addedButtonX = 0;
-absPos.addedButtonY = 1;
-absPos.addedButtonTextX= 4;
-absPos.addedButtonTextY = 18;
-*/
+absPos.addedButtonX = 5;
+absPos.addedButtonY = 12;
+absPos.addedButtonTextX= 10;
+absPos.addedButtonTextY = 26;
 
-absPos.addedButtonX = 450;
-absPos.addedButtonY = 10;
-absPos.addedButtonTextX= 454;
-absPos.addedButtonTextY = 28;
-
-absPos.waitButtonX = 450;
-absPos.waitButtonY = 300;
-absPos.waitButtonTextX = 455;
-absPos.waitButtonTextY = 318;
+absPos.waitButtonX = 150;
+absPos.waitButtonY = 240;
+absPos.waitButtonTextX = 155;
+absPos.waitButtonTextY = 273;
 
 
 

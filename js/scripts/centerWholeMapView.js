@@ -14,9 +14,15 @@ function centerWholeMapView(){
 
 	var w2 = w-extension;
 	
-	Coords.featurePercent = Coords.featureHeight/360;
-	Coords.theScale = h/2/pi;
-	Coords.theReScale = Coords.theScale/Coords.featurePercent*0.8;
+	Coords.hPercent = Coords.featureHeight/360;
+	Coords.hScreen = h/2/pi;
+	Coords.hScale = Coords.hScreen/Coords.hPercent;
+
+	Coords.wPercent = Coords.featureWidth/360;
+	Coords.wScreen = w2/2/pi;
+	Coords.wScale = Coords.wScreen/Coords.wPercent;
+
+	Coords.fScale = Math.min(Coords.hScale, Coords.wScale) * 0.68;
 
 	Coords.centerLon = Coords.lonMax - (Coords.featureWidth/2);
 	Coords.centerLat = Coords.latMax - (Coords.featureHeight/2);
