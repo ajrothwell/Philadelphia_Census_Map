@@ -22,6 +22,7 @@
 		<script src='js/scripts/variables.js'></script>
 		<script src='js/scripts/demographicsSetup.js'></script>
 		<script src='js/scripts/drawLegend.js'></script>
+		<script src='js/scripts/drawGraph.js'></script>
 		<script src='js/scripts/centerZoomView.js'></script>
 		<script src='js/scripts/readIn.js'></script>
 
@@ -54,6 +55,7 @@
 			<div class='demoValueText'></div>
 		</div>
 		<svg id='infoSVG'></svg>
+		<svg id='graphSVG'></svg>
 		<svg id='mapSVG'></svg>
 
 		<script type="text/javascript">
@@ -63,6 +65,7 @@
 			var extension = 300;
 			var svg = d3.select('#mapSVG');
 			var isvg = d3.select('#infoSVG');
+			var gsvg = d3.select('#graphSVG');
 /*			var bsvg = d3.select('#buttonSVG');*/
 			
 			var appView = Backbone.View.extend({

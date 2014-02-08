@@ -4,11 +4,8 @@ function initMap(){
 	if(viewRes.mode == 'LR'){
 		centerWholeMapView();
 		projection = d3.geo.mercator()
-//			.center([-75.12, 40])
 			.center([Coords.centerLon, Coords.centerLat])
-//			.scale(60000)
 			.scale(Coords.fScale)
-//			.scale(Coords.theReScale-(Coords.theReScale*.2))
 			.translate([w/2-150, h/2]);
 		path = d3.geo.path()
 			.projection(projection);
@@ -20,7 +17,6 @@ function initMap(){
 		projection = d3.geo.mercator()
 			.center([Coords.centerLon, Coords.centerLat])
 			.scale(Coords.fScale)
-//			.scale(Coords.theReScale-(Coords.theReScale*.2))
 			.translate([w/2-150, h/2]);
 		path = d3.geo.path()
 			.projection(projection);
@@ -37,11 +33,8 @@ function initMap(){
 	else if(viewRes.mode == 'HR'){
 		centerWholeMapView();
 		projection = d3.geo.mercator()
-//			.center([-75.12, 40])
 			.center([Coords.centerLon, Coords.centerLat])
-//			.scale(60000)
 			.scale(Coords.fScale)
-//			.scale(Coords.theReScale-(Coords.theReScale*.2))
 			.translate([w/2-150, h/2]);
 		path = d3.geo.path()
 			.projection(projection);
