@@ -42,3 +42,19 @@ demoMaps.unitsByCode = d3.map();
 demoMaps.scaledown1ByCode = d3.map();
 demoMaps.scaledown2ByCode = d3.map();
 
+var demoNames = ['White', 'Black', 'Latino', 'Asian', 'Other'];
+var demoVals = [];
+
+
+
+/*var demos = {};
+demos.orwhite.code = 'orwhite';
+demos.orblack.code = 'orblack';
+demos.latino;
+demos.orasian;
+demos.orother;
+*/
+
+//var demoNames2 = ['orwhite', 'orblack', 'latino', 'orasian', 'orother'];
+
+//var aOrWhite;

@@ -9,7 +9,7 @@ function drawLegend() {
 	var firstBarY = 60;
 //	var firstBarY = 245;
 
-	var textXOffset = 35
+	var textXOffset = 35;
 	var textYOffset = verticalBarDistance / 2;
 	var textXPosition = barX + textXOffset;
 
@@ -20,10 +20,10 @@ function drawLegend() {
 		.attr('id', 'theLegend')
 		.append('text')
 		.attr('id', 'legendTitle')
+		.attr('class', 'infoBoxTitle')
 		.text('Legend')
 		.attr("x", barX)
 		.attr("y", firstBarY - 15);
-		
 		
 	isvg.select('#theLegend')
 		.selectAll('rect')
@@ -59,7 +59,7 @@ function drawLegend() {
 			return d;
 //			return i;
 		})
-		.attr('class', 'legendText')
+		.attr('class', 'infoBoxText')
 		.attr('x', textXPosition)
 		.attr('y', function(d, i) {
 			return firstBarY + i * verticalBarDistance + textYOffset;

@@ -21,21 +21,23 @@
 	top: 50px;
 	width: 320px;
 	height: 170px;
-/*	border-left: solid;
-	border-width: 2px;
-*/	font-family: sans-serif;
+	font-family: sans-serif;
 }
 
 #infoSVG {
 	position: absolute;
 	left: 10px;
-	top: 220px;
+	top: 195px;
 	width: 320px;
 	height: 230px;
-/*	border-left: solid;
-	border-bottom: solid;
-	border-width: 2px;
-*/
+}
+
+#graphSVG {
+	position: absolute;
+	left: 10px;
+	top: 400px;
+	width: 320px;
+	height: 230px;
 }
 
 text {
@@ -44,8 +46,18 @@ text {
 	color: #aaa;
 }
 
-#legendTitle {
+.graphBar {
+	fill: #FF0000;
+	stroke: #000000;
+	stroke-width: 1.5;
+}
+
+.infoBoxTitle {
 	font-size: 22px;
+}
+
+.infoBoxText {
+	font-size: 12px;
 }
 
 .switchButtonText {
@@ -58,10 +70,6 @@ text {
 	user-select: none;
 }
 
-.legendText {
-	font-size: 12px;
-}
-
 .pleaseWaitButtonText {
 	font-size: 26px;
 }
@@ -70,35 +78,35 @@ text {
 	font-size: 30px;
 	position:absolute;
 	left:30px;
-	top:20px;
+	top:5px;
 }			
 
 .LR_name_label {
 	font-size: 26px;
 	position:absolute;
 	left:30px;
-	top:55px;
+	top:40px;
 }
 
 .HR_name_label {
 	font-size: 22px;
 	position:absolute;
 	left:30px;
-	top:90px;
+	top:75px;
 }
 
 .demoNameText {
 	font-size: 24px;
 	position:absolute;
 	left:30px;
-	top:125px;
+	top:110px;
 }
 
 .demoValueText {
 	font-size: 26px;
 	position:absolute;
 	left:30px;
-	top:155px;
+	top:135px;
 }
 
 .theShapeG :hover {

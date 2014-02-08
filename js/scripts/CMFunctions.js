@@ -120,6 +120,10 @@ getValue = function(a){
 	}
 };
 
+getDemos = function(a, aDemoName){
+	return precise_round(a.properties[aDemoName], 1);
+};
+
 addMap = function(){
 	svg.append('g')
 		.attr('id', 'theShapeG')
@@ -129,13 +133,16 @@ addMap = function(){
 		.enter()
 		.append('path')
 		.attr('id', function(d) { return getTract(d); })
-//		.attr('id', function(d) { return d.properties.tractce; })
 		.attr('class', function(d) { return getClass(d); })
-//		.attr('class', function(d) { return quantile(parseFloat(d.properties[currentDemo.code])); })
 		.attr('LR', function(d) { return d.properties.tractce; })
 		.attr('HR', function(d) { return d.properties.blockce; })
 		.attr('value', function(d) { return getValue(d); })
 //		.attr('value', function(d) {return precise_round(d.properties[currentDemo.code], currentDemo.theDecimals); })
+		.attr('White', function(d) { return getDemos(d, 'orwhite'); })
+		.attr('Black', function(d) { return getDemos(d, 'orblack'); })
+		.attr('Latino', function(d) {return getDemos(d, 'latino'); })
+		.attr('Asian', function(d) {return getDemos(d, 'orasian'); })
+		.attr('Other', function(d) {return getDemos(d, 'orother'); })
 		.attr('d', path)
 		.on('mouseover', mouseOver)
 		.on('mouseout', mouseOut)
@@ -161,6 +168,7 @@ addTBDemoValue = function(a){
 mouseOver = function(){
 	// for all modes add the demo value
 	addTBDemoValue(this);
+	drawGraph(this);
 	// if in "LR" mode add the tract number
 	if (viewRes.mode == 'LR'){
 		addTBLRhoverLabel(this);
@@ -182,6 +190,7 @@ mouseOut = function(){
 	if (viewRes.mode != 'zoomIn'){
 		$('.LR_name_label').html('');
 	}
+	gsvg.selectAll('g').remove();
 };
 
 dblClick = function(){
